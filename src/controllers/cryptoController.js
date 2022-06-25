@@ -4,8 +4,14 @@ const cryptoService = require('../services/cryptoService');
 const { isAuthenticated } = require('../middlewares/authMid');
 const { getErrorMessage } = require('../util');
 
-router.get('/', (req, res) => {
-    res.render('crypto/catalog');
+router.get('/', async (req, res) => {
+    try {
+        const cryptos = await cryptoService.getAll().lean();
+
+        res.render('crypto/catalog', { cryptos });
+    } catch (error) {
+        res.render('home/404');
+    }
 });
 
 router.get('/create', (req, res) => {
