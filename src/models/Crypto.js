@@ -4,6 +4,7 @@ const cryptoSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Name is required!'],
+        minlength: [2, 'Should be at least 2 characters'],
     },
     imageUrl: {
         type: String,
@@ -12,10 +13,12 @@ const cryptoSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: [true, 'Price is required!'],
+        min: [1, 'Must be positive!'],
     },
     description: {
         type: String,
         required: [true, 'Description is required!'],
+        minlength: [10, 'Should be at least 10 characters'],
     },
     payment: {
         type: String,

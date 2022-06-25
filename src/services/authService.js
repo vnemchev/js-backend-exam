@@ -35,7 +35,7 @@ exports.login = async (email, password) => {
         return token;
     } catch (error) {
         throw {
-            message: 'Username or pasword incorrect!'
+            message: 'Username or pasword incorrect!',
         };
     }
 };

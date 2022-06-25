@@ -12,6 +12,11 @@ router.post('/register', async (req, res) => {
     const { username, email, password, repeatPass } = req.body;
 
     try {
+        if (password < 4 || repeatPass < 4) {
+            throw {
+                message: 'Password must be at least 4 chars long!',
+            };
+        }
         if (password !== repeatPass) {
             throw {
                 message: 'Passwords must match!',
