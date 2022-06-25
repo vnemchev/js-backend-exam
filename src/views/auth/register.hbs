@@ -1,26 +1,27 @@
 <main>
-    <!-- In case of error, you should display div with class "errorContainer" -->
-    <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
-    <!-- <div>
-            <div class="errorContainer">
-                <p>Error</p>
+    {{#if error}}
+        <!-- In case of error, you should display div with class "errorContainer" -->
+        <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
+        <div>
+            <div class='errorContainer'>
+                <p>{{error}}</p>
             </div>
-        </div> -->
-
+        </div>
+    {{/if}}
     <div class='register-box'>
         <h1>Register</h1>
         <h4>It's free and only take a minute</h4>
-        <form action='#' method=''>
+        <form method='post'>
             <label>Username</label>
-            <input type='text' name='' placeholder='Username..' />
+            <input type='text' name='username' placeholder='Username..' value='{{username}}' />
             <label>Email</label>
-            <input type='text' name='' placeholder='Email..' />
+            <input type='text' name='email' placeholder='Email..' value='{{email}}' />
             <label>Password</label>
-            <input type='password' name='' placeholder='Password..' />
+            <input type='password' name='password' placeholder='Password..' value='{{password}}' />
             <label>Confirm Password</label>
-            <input type='password' name='' placeholder='Confirm Password..' />
+            <input type='password' name='repeatPass' placeholder='Confirm Password..' value='{{repeatPass}}' />
             <input type='submit' value='Submit' />
         </form>
-        <p>Already have an account? <a href='#'>Login here</a></p>
+        <p>Already have an account? <a href='/auth/login'>Login here</a></p>
     </div>
 </main>
