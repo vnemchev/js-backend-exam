@@ -5,8 +5,13 @@ router.get('/', (req, res) => {
     res.render('home');
 });
 
-router.get('/search', (req, res) => {
-    res.render('home/search');
+router.get('/search', async (req, res) => {
+    try {
+        const matches = await cryptoService.getAll().lean();
+        res.render('home/search', { matches });
+    } catch (error) {
+        res.redirect('home/404');
+    }
 });
 
 router.post('/search', async (req, res) => {
