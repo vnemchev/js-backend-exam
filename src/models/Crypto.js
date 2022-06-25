@@ -17,10 +17,10 @@ const cryptoSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Description is required!'],
     },
-    description: {
+    payment: {
         type: String,
         enum: ['crypto-wallet', 'credit-card', 'debit-card', 'paypal'],
-        required: [true, 'Description is required!'],
+        required: [true, 'Payment type is required!'],
     },
     buyACrypto: [
         {

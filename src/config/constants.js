@@ -1,1 +1,1 @@
-exports.SECRET = 'jgsuiro;ghodsgj845u40wopp'
+exports.SECRET = 'goddamnit'

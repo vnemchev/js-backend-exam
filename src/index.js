@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const routes = require('./routes');
+const { authenticate } = require('./middlewares/authMid');
 const { connectDb } = require('./config/db');
 
 const cookieParser = require('cookie-parser');
@@ -10,9 +11,8 @@ require('./config/hbs')(app);
 app.use(express.urlencoded({ extended: false }));
 app.use('/static', express.static('public'));
 app.use(cookieParser());
+app.use(authenticate);
 app.use(routes);
-
-
 
 try {
     connectDb();

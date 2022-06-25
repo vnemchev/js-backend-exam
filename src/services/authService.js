@@ -13,7 +13,30 @@ exports.register = async (username, email, password) => {
 
         return token;
     } catch (error) {
-        return error;
+        throw error;
+    }
+};
+
+exports.login = async (email, password) => {
+    try {
+        const user = await User.findOne({ email });
+        console.log(user.password);
+
+        const isValid = await bcrypt.compare(password, user.password);
+
+        if (!isValid) {
+            throw {
+                message: 'Wrong username or password!',
+            };
+        }
+
+        const token = await signToken(user);
+
+        return token;
+    } catch (error) {
+        throw {
+            message: 'Username or pasword incorrect!'
+        };
     }
 };
 
