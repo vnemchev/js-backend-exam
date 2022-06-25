@@ -22,11 +22,12 @@ router.get('/details/:cryptoId', async (req, res) => {
 
         const isOwner = crypto.owner._id == req.user?._id;
 
-        const bought = await hasBought(req.params.cryptoId, req.user._id);
+        const bought = await hasBought(req.params.cryptoId, req.user?._id);
         console.log(bought);
 
         res.render('crypto/details', { ...crypto, isOwner, bought });
     } catch (error) {
+        console.log(error);
         res.render('home/404');
     }
 });
