@@ -69,8 +69,23 @@ router.post('/edit/:cryptoId', isAuthenticated, async (req, res) => {
     }
 });
 
-router.get('/delete/:cryptoId', isAuthenticated, (req, res) => {
-    res.render('crypto/create');
+router.get('/delete/:cryptoId', isAuthenticated, async (req, res) => {
+    const crypto = await cryptoService.getOne(req.params.cryptoId).lean();
+    try {
+        const isOwner = crypto.owner._id == req.user?._id;
+        if (!isOwner) {
+            throw {
+                message: 'Not an owner!',
+            };
+        }
+
+        await cryptoService.delete(req.params.cryptoId);
+
+        res.redirect('/crypto');
+    } catch (error) {
+        console.log(error);
+        res.render('home/404');
+    }
 });
 
 module.exports = router;
