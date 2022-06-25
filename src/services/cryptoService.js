@@ -21,3 +21,9 @@ exports.buy = async (cryptoId, buyerId) => {
 
     await crypto.save();
 };
+
+exports.search = (name = '', payment = '') => {
+    const cryptos = Crypto.find({ name: { $regex: new RegExp(name, 'i') }, payment });
+
+    return cryptos;
+};
