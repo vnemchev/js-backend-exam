@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const cryptoService = require('../services/cryptoService');
+const { getErrorMessage } = require('../util');
 
 router.get('/', (req, res) => {
     res.render('home');
@@ -18,9 +19,9 @@ router.post('/search', async (req, res) => {
     const { name, payment } = req.body;
     try {
         const matches = await cryptoService.search(name, payment).lean();
-        res.render('home/search', { matches });
+        res.render('home/search', { matches, name, payment });
     } catch (error) {
-        res.redirect('home/404');
+        res.render('home/search', { ...req.body, error: getErrorMessage(error) });
     }
 });
 

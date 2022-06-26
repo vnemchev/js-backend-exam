@@ -3,7 +3,7 @@
         <h1>Search</h1>
 
         <form class='search-form' method='post'>
-            <input type='text' class='search-coin' name='name' placeholder='Search here...' />
+            <input type='text' class='search-coin' name='name' placeholder='Search here...' value='{{name}}' />
             <select id='payment' name='payment'>
                 <option value='crypto-wallet'>Crypto Wallet</option>
                 <option value='credit-card'>Credit Card</option>
@@ -41,3 +41,7 @@
 
     </section>
 </main>
+
+<script>
+    document.getElementById('payment').value = {{payment}};
+</script>
